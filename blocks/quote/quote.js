@@ -1,7 +1,13 @@
-export default function decorate(block) {
-    const [quotewrapper] = block.children;
+import { moveInstrumentation } from '../../scripts/scripts.js';
 
-    const blockquote = document.createElement('blockquote');
-    blockquote.textContent = quotewrapper.textContent.trim();
-    quotewrapper.replaceChildren(blockquote);
+export default function decorate(block) {
+  const [quoteWrapper] = block.children;
+  if (!quoteWrapper) return;
+
+  const blockquote = document.createElement('blockquote');
+  moveInstrumentation(quoteWrapper, blockquote);
+  while (quoteWrapper.firstChild) {
+    blockquote.append(quoteWrapper.firstChild);
+  }
+  quoteWrapper.replaceChildren(blockquote);
 }
