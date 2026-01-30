@@ -224,12 +224,39 @@
         "value": "",
         "label": "Quote",
         "valueType": "string"
-      },{
+      },
+      {
         "component": "text",
         "valueType": "string",
         "name": "author",
         "label": "Author",
         "value": ""
+      },
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Background Color",
+        "description": "The background color options for the quote block",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Red",
+            "value": "bg-red"
+          },
+          {
+            "name": "Green",
+            "value": "bg-green"
+          },
+          {
+            "name": "Blue",
+            "value": "bg-blue"
+          },
+          {
+            "name": "Yellow",
+            "value": "bg-yellow"
+          }
+        ]
       }
     ]
   }

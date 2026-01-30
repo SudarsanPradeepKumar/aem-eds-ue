@@ -57,3 +57,19 @@
     width: 30px;
     background-color: darkgray;
 }
+
+.block.quote.bg-red {
+    background-color: #f8d7da;
+}
+
+.block.quote.bg-green {
+    background-color: #d1e7dd;
+}
+
+.block.quote.bg-blue {
+    background-color: #cfe2ff;
+}
+
+.block.quote.bg-yellow {
+    background-color: #fff3cd;
+}
