@@ -110,8 +110,10 @@ export default function decorate(block) {
     const externalElement = findPropElement(externalProp);
     const anchor = resolveAnchor(linkElement);
     const externalUrl = externalElement?.textContent.trim();
+    const textValue = textElement?.textContent.trim();
+    const hasText = Boolean(textValue);
     const fallbackAnchor = (!anchor && !externalUrl) ? fallbackAnchors.shift() : null;
-    if (!anchor && !externalUrl && !fallbackAnchor) return;
+    if (!anchor && !externalUrl && !fallbackAnchor && !hasText) return;
 
     const resolvedAnchor = anchor || fallbackAnchor || document.createElement('a');
     if (externalUrl) {
@@ -121,10 +123,9 @@ export default function decorate(block) {
     }
 
     if (textElement) {
-      const buttonText = textElement.textContent.trim();
-      if (buttonText) {
+      if (textValue) {
         const span = document.createElement('span');
-        span.textContent = buttonText;
+        span.textContent = textValue;
         moveInstrumentation(textElement, span);
         resolvedAnchor.textContent = '';
         resolvedAnchor.append(span);
@@ -132,6 +133,12 @@ export default function decorate(block) {
       textElement.remove();
     } else if (!resolvedAnchor.textContent.trim() && externalUrl) {
       resolvedAnchor.textContent = externalUrl;
+    }
+
+    if (!resolvedAnchor.getAttribute('href')) {
+      resolvedAnchor.setAttribute('href', '#');
+      resolvedAnchor.setAttribute('aria-disabled', 'true');
+      resolvedAnchor.classList.add('is-disabled');
     }
 
     resolvedAnchor.classList.add('button', variant);
