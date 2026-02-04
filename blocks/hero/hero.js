@@ -10,11 +10,13 @@ const propClassMap = {
 const ctaFields = {
   primary: {
     link: 'ctaPrimaryLink',
+    text: 'ctaPrimaryText',
     externalUrl: 'ctaPrimaryExternalUrl',
     variant: 'primary',
   },
   secondary: {
     link: 'ctaSecondaryLink',
+    text: 'ctaSecondaryText',
     externalUrl: 'ctaSecondaryExternalUrl',
     variant: 'secondary',
   },
@@ -73,21 +75,63 @@ export default function decorate(block) {
     return anchor;
   };
 
-  const buildCta = ({ link: linkProp, externalUrl: externalProp, variant }) => {
-    const linkElement = block.querySelector(`[data-aue-prop="${linkProp}"]`);
-    const externalElement = block.querySelector(`[data-aue-prop="${externalProp}"]`);
+  const findPropElement = (prop) => block.querySelector(
+    `[data-aue-prop="${prop}"],[data-richtext-prop="${prop}"]`,
+  );
+
+  const findFallbackAnchors = () => {
+    const candidates = [];
+    [...content.children].forEach((child) => {
+      if (child.tagName === 'A') {
+        candidates.push(child);
+        return;
+      }
+      if (
+        child.children.length === 1
+        && child.firstElementChild?.tagName === 'A'
+        && child.textContent.trim() === child.firstElementChild.textContent.trim()
+      ) {
+        candidates.push(child.firstElementChild);
+      }
+    });
+    return candidates;
+  };
+
+  const fallbackAnchors = findFallbackAnchors();
+
+  const buildCta = ({
+    link: linkProp,
+    text: textProp,
+    externalUrl: externalProp,
+    variant,
+  }) => {
+    const linkElement = findPropElement(linkProp);
+    const textElement = findPropElement(textProp);
+    const externalElement = findPropElement(externalProp);
     const anchor = resolveAnchor(linkElement);
     const externalUrl = externalElement?.textContent.trim();
-    if (!anchor && !externalUrl) return;
+    const fallbackAnchor = (!anchor && !externalUrl) ? fallbackAnchors.shift() : null;
+    if (!anchor && !externalUrl && !fallbackAnchor) return;
 
-    const resolvedAnchor = anchor || document.createElement('a');
+    const resolvedAnchor = anchor || fallbackAnchor || document.createElement('a');
     if (externalUrl) {
       resolvedAnchor.href = externalUrl;
-      if (!resolvedAnchor.textContent.trim()) {
-        resolvedAnchor.textContent = externalUrl;
-      }
       moveInstrumentation(externalElement, resolvedAnchor);
       externalElement.remove();
+    }
+
+    if (textElement) {
+      const buttonText = textElement.textContent.trim();
+      if (buttonText) {
+        const span = document.createElement('span');
+        span.textContent = buttonText;
+        moveInstrumentation(textElement, span);
+        resolvedAnchor.textContent = '';
+        resolvedAnchor.append(span);
+      }
+      textElement.remove();
+    } else if (!resolvedAnchor.textContent.trim() && externalUrl) {
+      resolvedAnchor.textContent = externalUrl;
     }
 
     resolvedAnchor.classList.add('button', variant);

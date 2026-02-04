@@ -242,6 +242,13 @@
       {
         "component": "text",
         "valueType": "string",
+        "name": "ctaPrimaryText",
+        "label": "Primary CTA Text",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
         "name": "ctaPrimaryExternalUrl",
         "label": "Primary CTA External URL",
         "value": ""
@@ -250,6 +257,13 @@
         "component": "aem-content",
         "name": "ctaSecondaryLink",
         "label": "Secondary CTA Link"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "ctaSecondaryText",
+        "label": "Secondary CTA Text",
+        "value": ""
       },
       {
         "component": "text",
