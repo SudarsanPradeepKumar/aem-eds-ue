@@ -157,7 +157,9 @@
                   "paragraph": "<p>Launch pages quickly with a reusable hero block that supports rich content and calls to action.</p>",
                   "footnotes": "Terms apply. Limited time offer.",
                   "ctaPrimaryLink": "<a href=\"/\">Get started</a>",
-                  "ctaSecondaryLink": "<a href=\"/\">Learn more</a>"
+                  "ctaPrimaryExternalUrl": "",
+                  "ctaSecondaryLink": "<a href=\"/\">Learn more</a>",
+                  "ctaSecondaryExternalUrl": ""
                 }
               }
             }

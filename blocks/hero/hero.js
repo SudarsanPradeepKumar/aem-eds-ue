@@ -10,10 +10,12 @@ const propClassMap = {
 const ctaFields = {
   primary: {
     link: 'ctaPrimaryLink',
+    externalUrl: 'ctaPrimaryExternalUrl',
     variant: 'primary',
   },
   secondary: {
     link: 'ctaSecondaryLink',
+    externalUrl: 'ctaSecondaryExternalUrl',
     variant: 'secondary',
   },
 };
@@ -71,15 +73,27 @@ export default function decorate(block) {
     return anchor;
   };
 
-  const buildCta = ({ link: linkProp, variant }) => {
+  const buildCta = ({ link: linkProp, externalUrl: externalProp, variant }) => {
     const linkElement = block.querySelector(`[data-aue-prop="${linkProp}"]`);
+    const externalElement = block.querySelector(`[data-aue-prop="${externalProp}"]`);
     const anchor = resolveAnchor(linkElement);
-    if (!anchor) return;
+    const externalUrl = externalElement?.textContent.trim();
+    if (!anchor && !externalUrl) return;
 
-    anchor.classList.add('button', variant);
+    const resolvedAnchor = anchor || document.createElement('a');
+    if (externalUrl) {
+      resolvedAnchor.href = externalUrl;
+      if (!resolvedAnchor.textContent.trim()) {
+        resolvedAnchor.textContent = externalUrl;
+      }
+      moveInstrumentation(externalElement, resolvedAnchor);
+      externalElement.remove();
+    }
+
+    resolvedAnchor.classList.add('button', variant);
     const wrapper = document.createElement('p');
     wrapper.className = 'button-container';
-    wrapper.append(anchor);
+    wrapper.append(resolvedAnchor);
     ctaContainer.append(wrapper);
   };
 
