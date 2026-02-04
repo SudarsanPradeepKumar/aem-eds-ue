@@ -10,12 +10,10 @@ const propClassMap = {
 const ctaFields = {
   primary: {
     link: 'ctaPrimaryLink',
-    text: 'ctaPrimaryText',
     variant: 'primary',
   },
   secondary: {
     link: 'ctaSecondaryLink',
-    text: 'ctaSecondaryText',
     variant: 'secondary',
   },
 };
@@ -73,20 +71,10 @@ export default function decorate(block) {
     return anchor;
   };
 
-  const buildCta = ({ link: linkProp, text: textProp, variant }) => {
+  const buildCta = ({ link: linkProp, variant }) => {
     const linkElement = block.querySelector(`[data-aue-prop="${linkProp}"]`);
-    const textElement = block.querySelector(`[data-aue-prop="${textProp}"]`);
     const anchor = resolveAnchor(linkElement);
     if (!anchor) return;
-
-    if (textElement) {
-      const span = document.createElement('span');
-      span.textContent = textElement.textContent.trim();
-      moveInstrumentation(textElement, span);
-      anchor.textContent = '';
-      anchor.append(span);
-      textElement.remove();
-    }
 
     anchor.classList.add('button', variant);
     const wrapper = document.createElement('p');
