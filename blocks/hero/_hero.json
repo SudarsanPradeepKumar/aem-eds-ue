@@ -71,7 +71,7 @@
           "component": "text",
           "valueType": "string",
           "name": "ctaPrimaryText",
-          "label": "Primary CTA Text",
+          "label": "Primary CTA Name",
           "value": ""
         },
         {
@@ -90,7 +90,7 @@
           "component": "text",
           "valueType": "string",
           "name": "ctaSecondaryText",
-          "label": "Secondary CTA Text",
+          "label": "Secondary CTA Name",
           "value": ""
         },
         {
