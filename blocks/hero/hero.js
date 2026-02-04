@@ -109,7 +109,9 @@ export default function decorate(block) {
     const textElement = findPropElement(textProp);
     const externalElement = findPropElement(externalProp);
     const anchor = resolveAnchor(linkElement);
-    const externalUrl = externalElement?.textContent.trim();
+    const externalUrl = externalElement?.getAttribute('data-aue-value')
+      || externalElement?.getAttribute('data-richtext-value')
+      || externalElement?.textContent.trim();
     const textValue = textElement?.textContent.trim();
     const hasText = Boolean(textValue);
     const fallbackAnchor = (!anchor && !externalUrl) ? fallbackAnchors.shift() : null;
