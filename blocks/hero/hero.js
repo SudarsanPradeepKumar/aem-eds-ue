@@ -116,10 +116,12 @@ export default function decorate(block) {
     if (!anchor && !externalUrl && !fallbackAnchor && !hasText) return;
 
     const resolvedAnchor = anchor || fallbackAnchor || document.createElement('a');
-    if (externalUrl) {
-      resolvedAnchor.href = externalUrl;
+    if (externalElement) {
       moveInstrumentation(externalElement, resolvedAnchor);
       externalElement.remove();
+    }
+    if (externalUrl) {
+      resolvedAnchor.href = externalUrl;
     }
 
     if (textElement) {
