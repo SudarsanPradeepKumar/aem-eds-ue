@@ -9,11 +9,44 @@
   min-height: 300px;
 }
 
-.hero h1 {
+.hero .hero-content {
+  position: relative;
+  z-index: 1;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
   color: var(--background-color);
+}
+
+.hero .hero-title {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--background-color);
+}
+
+.hero .hero-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  margin-bottom: 8px;
+}
+
+.hero .hero-paragraph {
+  max-width: 700px;
+}
+
+.hero .hero-footnotes {
+  margin-top: 12px;
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+.hero .hero-ctas {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .hero picture {
