@@ -134,4 +134,9 @@
   .hero .hero-content {
     max-width: 1200px;
   }
+
+  .columns .hero .hero-content {
+    max-width: none;
+    width: 100%;
+  }
 }
