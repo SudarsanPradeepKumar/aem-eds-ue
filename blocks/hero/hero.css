@@ -108,6 +108,7 @@
 .hero .button.is-play .hero-cta-play {
   font-size: 0.85em;
   line-height: 1;
+  padding-left: 4px;
 }
 
 .hero.text-black {
