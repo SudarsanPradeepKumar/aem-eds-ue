@@ -135,6 +135,32 @@
   order: 1;
 }
 
+.hero.bg-image-left {
+  background-color: #f2fafd;
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+}
+
+.hero.bg-image-left .hero-background,
+.hero.bg-image-left .hero-background img {
+  object-position: left center;
+}
+
+.hero.bg-image-left .hero-background {
+  position: static;
+  width: 50%;
+  height: auto;
+  order: 1;
+}
+
+.hero.bg-image-left .hero-content {
+  width: 50%;
+  margin: 0;
+  text-align: left;
+  order: 2;
+}
+
 .hero .button {
   border-radius: 999px;
   display: inline-flex;

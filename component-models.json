@@ -231,6 +231,10 @@
           {
             "name": "Background + Image Right",
             "value": "bg-image-right"
+          },
+          {
+            "name": "Background + Image Left",
+            "value": "bg-image-left"
           }
         ]
       },
