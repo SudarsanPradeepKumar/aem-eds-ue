@@ -88,6 +88,8 @@ export default function decorate(block) {
   ctaFields.forEach(({ text, url, variant }) => {
     const textElement = getPropElement(text);
     const urlElement = getPropElement(url);
+    console.log('textElement: ' + textElement);
+    console.log('urlElement: ' + urlElement);
 
     const label = getTextPropValue(textElement);
     let href = getUrlPropValue(urlElement);
