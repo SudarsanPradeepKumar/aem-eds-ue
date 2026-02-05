@@ -174,7 +174,7 @@
 }
 
 .hero a.button.secondary {
-  background-color: #f2fafd;
+  background-color: transparent;
   border-color: #f2fafd;
   color: #f2fafd;
 }
