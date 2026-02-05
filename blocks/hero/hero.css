@@ -109,6 +109,15 @@
   justify-content: flex-end;
 }
 
+.hero.bg-image-right {
+  background-color: #f2fafd;
+}
+
+.hero.bg-image-right .hero-background,
+.hero.bg-image-right .hero-background img {
+  object-position: right center;
+}
+
 .hero .button {
   border-radius: 999px;
   display: inline-flex;

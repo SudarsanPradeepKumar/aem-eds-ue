@@ -227,6 +227,10 @@
           {
             "name": "Content Right",
             "value": "content-right"
+          },
+          {
+            "name": "Background + Image Right",
+            "value": "bg-image-right"
           }
         ]
       },
