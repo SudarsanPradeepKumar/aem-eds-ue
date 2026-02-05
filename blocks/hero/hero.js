@@ -61,6 +61,19 @@ export default function decorate(block) {
     || element?.textContent.trim()
     || '';
 
+  const removeEmptyParent = (element) => {
+    if (!element) return;
+    const parent = element.parentElement;
+    element.remove();
+    if (
+      parent
+      && parent.childElementCount === 0
+      && parent.textContent.trim() === ''
+    ) {
+      parent.remove();
+    }
+  };
+
   const ctaContainer = document.createElement('div');
   ctaContainer.className = 'hero-ctas';
 
@@ -88,11 +101,11 @@ export default function decorate(block) {
 
     if (textElement) {
       moveInstrumentation(textElement, anchor);
-      textElement.remove();
+      removeEmptyParent(textElement);
     }
     if (urlElement) {
       moveInstrumentation(urlElement, anchor);
-      urlElement.remove();
+      removeEmptyParent(urlElement);
     }
 
     const wrapper = document.createElement('p');
