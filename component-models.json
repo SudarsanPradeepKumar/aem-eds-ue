@@ -228,6 +228,23 @@
         "value": ""
       },
       {
+        "component": "select",
+        "name": "classes",
+        "label": "Variant",
+        "value": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Content Left",
+            "value": ""
+          },
+          {
+            "name": "Content Right",
+            "value": "content-right"
+          }
+        ]
+      },
+      {
         "component": "text",
         "valueType": "string",
         "name": "ctaPrimaryText",

@@ -72,6 +72,16 @@
   flex-wrap: wrap;
 }
 
+.hero.content-right .hero-content {
+  margin-left: auto;
+  margin-right: 0;
+  text-align: right;
+}
+
+.hero.content-right .hero-ctas {
+  justify-content: flex-end;
+}
+
 .hero .button {
   border-radius: 999px;
 }
