@@ -195,16 +195,9 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "image",
-        "label": "Image",
+        "name": "backgroundImage",
+        "label": "Background Image",
         "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Alt",
-        "value": ""
       },
       {
         "component": "text",
@@ -245,7 +238,7 @@
         "component": "text",
         "valueType": "string",
         "name": "ctaPrimaryUrl",
-        "label": "Primary CTA URL",
+        "label": "Primary CTA Link",
         "value": ""
       },
       {
@@ -259,7 +252,7 @@
         "component": "text",
         "valueType": "string",
         "name": "ctaSecondaryUrl",
-        "label": "Secondary CTA URL",
+        "label": "Secondary CTA Link",
         "value": ""
       }
     ]

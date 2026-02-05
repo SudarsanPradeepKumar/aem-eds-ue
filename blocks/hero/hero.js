@@ -21,25 +21,15 @@ const ctaFields = [
 ];
 
 export default function decorate(block) {
-  const existingContent = block.querySelector(':scope > .hero-content');
-  if (!existingContent) {
-    const picture = block.querySelector('picture');
-    if (picture) {
-      const pictureWrapper = picture.closest('div');
-      if (pictureWrapper && pictureWrapper !== block) {
-        moveInstrumentation(pictureWrapper, picture);
-        pictureWrapper.replaceWith(picture);
-      }
+  const picture = block.querySelector('picture');
+  if (picture) {
+    const pictureWrapper = picture.closest('div');
+    if (pictureWrapper && pictureWrapper !== block) {
+      moveInstrumentation(pictureWrapper, picture);
+      pictureWrapper.replaceWith(picture);
     }
-
-    const heroContent = document.createElement('div');
-    heroContent.className = 'hero-content';
-    [...block.children].forEach((child) => {
-      if (child !== picture) heroContent.append(child);
-    });
-    if (heroContent.childElementCount) {
-      block.append(heroContent);
-    }
+    picture.classList.add('hero-background');
+    block.prepend(picture);
   }
 
   Object.entries(propClassMap).forEach(([prop, className]) => {
@@ -48,23 +38,11 @@ export default function decorate(block) {
       .forEach((element) => element.classList.add(className));
   });
 
-  const content = block.querySelector(':scope > .hero-content') || block;
-  const existingCtas = content.querySelector(':scope > .hero-ctas');
-  if (existingCtas) existingCtas.remove();
+  const getPropElement = (prop) => block.querySelector(
+    `[data-aue-prop="${prop}"],[data-richtext-prop="${prop}"]`,
+  );
 
-  const getPropElement = (prop) =>
-    block.querySelector(
-      `[data-aue-prop="${prop}"],[data-richtext-prop="${prop}"]`,
-    );
-
-  const getTextPropValue = (element) =>
-    element?.getAttribute('data-aue-value')
-    || element?.getAttribute('data-richtext-value')
-    || element?.textContent.trim()
-    || '';
-
-  const getUrlPropValue = (element) =>
-    element?.getAttribute('data-aue-value')
+  const getPropValue = (element) => element?.getAttribute('data-aue-value')
     || element?.getAttribute('data-richtext-value')
     || element?.textContent.trim()
     || '';
@@ -73,11 +51,7 @@ export default function decorate(block) {
     if (!element) return;
     const parent = element.parentElement;
     element.remove();
-    if (
-      parent
-      && parent.childElementCount === 0
-      && parent.textContent.trim() === ''
-    ) {
+    if (parent && parent.childElementCount === 0 && parent.textContent.trim() === '') {
       parent.remove();
     }
   };
@@ -88,32 +62,23 @@ export default function decorate(block) {
   ctaFields.forEach(({ text, url, variant }) => {
     const textElement = getPropElement(text);
     const urlElement = getPropElement(url);
-    console.log('textElement: ' + textElement);
-    console.log('urlElement: ' + urlElement);
+    const label = getPropValue(textElement);
+    const href = getPropValue(urlElement);
+    console.log('label: ' + label);
+    console.log('href: ' + href);
 
-    const label = getTextPropValue(textElement);
-    let href = getUrlPropValue(urlElement);
-
-    // Fallback: if no dedicated URL prop, and textElement is an <a>, use its href
-    if (!href && textElement instanceof HTMLAnchorElement) {
-      href = textElement.getAttribute('href') || '';
-    }
-
-    // If we still have nothing at all, skip this CTA
     if (!label && !href) {
-      if (textElement) textElement.remove();
-      if (urlElement) urlElement.remove();
+      removeEmptyParent(textElement);
+      removeEmptyParent(urlElement);
       return;
     }
 
     const anchor = document.createElement('a');
+    if (href) anchor.href = href;
     if (label) anchor.textContent = label;
     anchor.classList.add('button', variant);
 
-    if (href) {
-      anchor.href = href;
-    } else {
-      // Keep behavior: label without URL → disabled CTA
+    if (!href) {
       anchor.setAttribute('href', '#');
       anchor.setAttribute('aria-disabled', 'true');
       anchor.classList.add('is-disabled');
@@ -131,11 +96,10 @@ export default function decorate(block) {
     const wrapper = document.createElement('p');
     wrapper.className = 'button-container';
     wrapper.append(anchor);
-    //ctaContainer.append(wrapper);
-  
+    ctaContainer.append(wrapper);
   });
 
-  if (ctaContainer.childElementCount) {
-    content.append(ctaContainer);
+  if (ctaContainer.childNodes.length) {
+    block.append(ctaContainer);
   }
 }

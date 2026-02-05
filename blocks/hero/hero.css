@@ -1,45 +1,5 @@
-.hero-container .hero-wrapper {
-  max-width: unset;
-  padding: 0;
-}
-
 .hero {
   position: relative;
-  padding: 40px 24px;
-  min-height: 300px;
-}
-
-.hero .hero-content {
-  position: relative;
-  z-index: 1;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
-}
-
-.hero .hero-title {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
-}
-
-.hero .hero-eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.75rem;
-  margin-bottom: 8px;
-}
-
-.hero .hero-paragraph {
-  max-width: 700px;
-}
-
-.hero .hero-footnotes {
-  margin-top: 12px;
-  font-size: 0.75rem;
-  opacity: 0.85;
 }
 
 .hero .hero-ctas {
@@ -67,25 +27,4 @@
 .hero .button.is-disabled {
   opacity: 0.6;
   pointer-events: none;
-}
-
-
-.hero picture {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  object-fit: cover;
-  box-sizing: border-box;
-}
-
-.hero img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-
-@media (width >= 900px) {
-  .hero {
-    padding: 40px 32px;
-  }
 }
