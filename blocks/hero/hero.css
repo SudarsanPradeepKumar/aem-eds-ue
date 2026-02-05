@@ -19,6 +19,7 @@
 .columns .hero {
   margin: 16px 0;
   height: 100%;
+  min-height: 320px;
 }
 
 .columns .hero .hero-content {
@@ -28,7 +29,6 @@
 .hero {
   position: relative;
   padding: 40px 24px;
-  min-height: 320px;
   color: var(--background-color);
   width: 100%;
   margin: 0;
