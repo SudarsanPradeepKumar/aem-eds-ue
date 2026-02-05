@@ -21,6 +21,7 @@ const ctaFields = [
 ];
 
 export default function decorate(block) {
+  const existingContent = block.querySelector(':scope > .hero-content');
   const picture = block.querySelector('picture');
   if (picture) {
     const pictureWrapper = picture.closest('div');
@@ -32,11 +33,26 @@ export default function decorate(block) {
     block.prepend(picture);
   }
 
+  if (!existingContent) {
+    const content = document.createElement('div');
+    content.className = 'hero-content';
+    [...block.children].forEach((child) => {
+      if (child !== picture) content.append(child);
+    });
+    if (content.childNodes.length) {
+      block.append(content);
+    }
+  }
+
   Object.entries(propClassMap).forEach(([prop, className]) => {
     block
       .querySelectorAll(`[data-aue-prop="${prop}"],[data-richtext-prop="${prop}"]`)
       .forEach((element) => element.classList.add(className));
   });
+
+  const content = block.querySelector(':scope > .hero-content') || block;
+  const existingCtas = content.querySelector(':scope > .hero-ctas');
+  if (existingCtas) existingCtas.remove();
 
   const getPropElement = (prop) => block.querySelector(
     `[data-aue-prop="${prop}"],[data-richtext-prop="${prop}"]`,
@@ -120,6 +136,6 @@ export default function decorate(block) {
   });
 
   if (ctaContainer.childNodes.length) {
-    block.append(ctaContainer);
+    content.append(ctaContainer);
   }
 }
