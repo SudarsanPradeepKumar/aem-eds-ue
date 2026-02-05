@@ -168,12 +168,12 @@
   gap: 8px;
 }
 
-.hero .button.primary {
+.hero a.button.primary {
   background-color: #f2fafd;
   color: #00388f;
 }
 
-.hero .button.secondary {
+.hero a.button.secondary {
   background-color: transparent;
   border-color: #f2fafd;
   color: #f2fafd;
