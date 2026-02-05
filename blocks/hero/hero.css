@@ -174,7 +174,7 @@
 }
 
 .hero a.button.secondary {
-  background-color: transparent;
+  background-color: #f2fafd;
   border-color: #f2fafd;
   color: #f2fafd;
 }
@@ -186,6 +186,7 @@
 }
 
 .hero a.button.secondary.is-blue {
+  background-color: #f2fafd;
   border-color: #00388f;
   color: #00388f;
 }
