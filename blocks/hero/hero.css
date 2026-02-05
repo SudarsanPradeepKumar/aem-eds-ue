@@ -111,11 +111,28 @@
 
 .hero.bg-image-right {
   background-color: #f2fafd;
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
 }
 
 .hero.bg-image-right .hero-background,
 .hero.bg-image-right .hero-background img {
   object-position: right center;
+}
+
+.hero.bg-image-right .hero-background {
+  position: static;
+  width: 50%;
+  height: auto;
+  order: 2;
+}
+
+.hero.bg-image-right .hero-content {
+  width: 50%;
+  margin: 0;
+  text-align: left;
+  order: 1;
 }
 
 .hero .button {
