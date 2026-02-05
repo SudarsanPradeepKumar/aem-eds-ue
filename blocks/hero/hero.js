@@ -69,10 +69,20 @@ export default function decorate(block) {
     `[data-aue-prop="${prop}"],[data-richtext-prop="${prop}"]`,
   );
 
-  const getPropValue = (element) => element?.getAttribute('data-aue-value')
-    || element?.getAttribute('data-richtext-value')
-    || element?.textContent.trim()
-    || '';
+  const getPropValue = (element) => {
+    if (!element) return '';
+    if (element.tagName === 'A' && element.getAttribute('href')) {
+      return element.getAttribute('href');
+    }
+    const nestedLink = element.querySelector?.('a[href]');
+    if (nestedLink) {
+      return nestedLink.getAttribute('href');
+    }
+    return element.getAttribute('data-aue-value')
+      || element.getAttribute('data-richtext-value')
+      || element.textContent.trim()
+      || '';
+  };
 
   const removeEmptyParent = (element) => {
     if (!element) return;
