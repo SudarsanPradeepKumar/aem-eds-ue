@@ -269,6 +269,23 @@
         "value": ""
       },
       {
+        "component": "select",
+        "name": "ctaPrimaryVariant",
+        "label": "Primary CTA Variant",
+        "value": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Play",
+            "value": "play"
+          }
+        ]
+      },
+      {
         "component": "aem-content",
         "name": "ctaPrimaryUrl",
         "label": "Primary CTA Link"
@@ -279,6 +296,23 @@
         "name": "ctaSecondaryText",
         "label": "Secondary CTA Label",
         "value": ""
+      },
+      {
+        "component": "select",
+        "name": "ctaSecondaryVariant",
+        "label": "Secondary CTA Variant",
+        "value": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Play",
+            "value": "play"
+          }
+        ]
       },
       {
         "component": "aem-content",

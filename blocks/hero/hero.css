@@ -84,6 +84,9 @@
 
 .hero .button {
   border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .hero .button.primary {
@@ -100,6 +103,11 @@
 .hero .button.is-disabled {
   opacity: 0.6;
   pointer-events: none;
+}
+
+.hero .button.is-play .hero-cta-play {
+  font-size: 0.85em;
+  line-height: 1;
 }
 
 .hero.text-black {

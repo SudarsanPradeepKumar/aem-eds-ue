@@ -10,11 +10,13 @@ const propClassMap = {
 const ctaFields = [
   {
     text: 'ctaPrimaryText',
+    variantField: 'ctaPrimaryVariant',
     url: 'ctaPrimaryUrl',
     variant: 'primary',
   },
   {
     text: 'ctaSecondaryText',
+    variantField: 'ctaSecondaryVariant',
     url: 'ctaSecondaryUrl',
     variant: 'secondary',
   },
@@ -106,17 +108,20 @@ export default function decorate(block) {
   const ctaContainer = document.createElement('div');
   ctaContainer.className = 'hero-ctas';
 
-  ctaFields.forEach(({ text, url, variant }) => {
+  ctaFields.forEach(({ text, url, variant, variantField }) => {
     const textElement = getPropElement(text);
+    const variantElement = getPropElement(variantField);
     const urlElement = getPropElement(url);
     const label = getPropValue(textElement);
     const href = getPropValue(urlElement);
+    const ctaVariant = getPropValue(variantElement);
     const fallbackLink = (!href && !urlElement) ? takeFallbackLink() : null;
     const fallbackHref = fallbackLink?.getAttribute('href')
       || fallbackLink?.textContent.trim();
 
     if (!label && !href) {
       removeEmptyParent(textElement);
+      removeEmptyParent(variantElement);
       removeEmptyParent(urlElement);
       if (fallbackLink) removeEmptyParent(fallbackLink);
       return;
@@ -127,6 +132,14 @@ export default function decorate(block) {
     if (!href && fallbackHref) anchor.href = fallbackHref;
     if (label) anchor.textContent = label;
     anchor.classList.add('button', variant);
+    if (ctaVariant === 'play') {
+      anchor.classList.add('is-play');
+      const playIcon = document.createElement('span');
+      playIcon.className = 'hero-cta-play';
+      playIcon.setAttribute('aria-hidden', 'true');
+      playIcon.textContent = '▶';
+      anchor.append(playIcon);
+    }
 
     if (!href && !fallbackHref) {
       anchor.setAttribute('href', '#');
@@ -137,6 +150,10 @@ export default function decorate(block) {
     if (textElement) {
       moveInstrumentation(textElement, anchor);
       removeEmptyParent(textElement);
+    }
+    if (variantElement) {
+      moveInstrumentation(variantElement, anchor);
+      removeEmptyParent(variantElement);
     }
     if (urlElement) {
       moveInstrumentation(urlElement, anchor);
