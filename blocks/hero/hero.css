@@ -77,14 +77,14 @@
 }
 
 .hero .button.primary {
-  background-color: #00388f;
-  color: #f2fafd;
+  background-color: var(--link-color);
+  color: var(--background-color);
 }
 
 .hero .button.secondary {
   background-color: transparent;
-  border-color: #00388f;
-  color: #00388f;
+  border-color: var(--link-color);
+  color: var(--link-color);
 }
 
 .hero .button.is-disabled {
