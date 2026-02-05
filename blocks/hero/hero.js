@@ -50,6 +50,15 @@ export default function decorate(block) {
       .forEach((element) => element.classList.add(className));
   });
 
+  const titleElement = block.querySelector('.hero-title');
+  if (titleElement && titleElement.tagName !== 'H2') {
+    const heading = document.createElement('h2');
+    heading.className = titleElement.className;
+    heading.textContent = titleElement.textContent;
+    moveInstrumentation(titleElement, heading);
+    titleElement.replaceWith(heading);
+  }
+
   const content = block.querySelector(':scope > .hero-content') || block;
   const existingCtas = content.querySelector(':scope > .hero-ctas');
   if (existingCtas) existingCtas.remove();
