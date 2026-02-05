@@ -7,6 +7,10 @@
   padding: 0;
 }
 
+.columns .hero-container .hero-wrapper {
+  max-width: 100%;
+}
+
 .hero {
   position: relative;
   padding: 40px 24px;
@@ -44,6 +48,11 @@
   margin: 0;
   text-align: left;
   padding: 0 24px;
+}
+
+.columns .hero .hero-content {
+  width: 100%;
+  max-width: none;
 }
 
 .hero .hero-eyebrow {
