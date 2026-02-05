@@ -185,6 +185,11 @@
   color: #f2fafd;
 }
 
+.hero a.button.secondary.is-blue {
+  border-color: #00388f;
+  color: #00388f;
+}
+
 .hero .button.is-disabled {
   opacity: 0.6;
   pointer-events: none;
