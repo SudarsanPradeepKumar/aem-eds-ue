@@ -131,7 +131,8 @@ export default function decorate(block) {
     const wrapper = document.createElement('p');
     wrapper.className = 'button-container';
     wrapper.append(anchor);
-    ctaContainer.append(wrapper);
+    //ctaContainer.append(wrapper);
+  
   });
 
   if (ctaContainer.childElementCount) {
