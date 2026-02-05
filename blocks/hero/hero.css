@@ -102,6 +102,10 @@
   pointer-events: none;
 }
 
+.hero.text-black {
+  color: #000;
+}
+
 @media (width >= 900px) {
   .hero {
     padding: 64px 32px;

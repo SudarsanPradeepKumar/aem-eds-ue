@@ -72,6 +72,24 @@ export default function decorate(block) {
     || element?.textContent.trim()
     || '';
 
+  const removeEmptyParent = (element) => {
+    if (!element) return;
+    const parent = element.parentElement;
+    element.remove();
+    if (parent && parent.childElementCount === 0 && parent.textContent.trim() === '') {
+      parent.remove();
+    }
+  };
+
+  const textColorElement = getPropElement('textColor');
+  const textColorValue = getPropValue(textColorElement);
+  if (textColorValue) {
+    block.classList.add(textColorValue);
+  } else {
+    block.classList.remove('text-black');
+  }
+  removeEmptyParent(textColorElement);
+
   const fallbackLinkCandidates = () => [...block.querySelectorAll(':scope > div p.button-container > a')]
     .filter((anchor) => !anchor.closest('.hero-ctas'));
 
@@ -83,15 +101,6 @@ export default function decorate(block) {
     const row = link.closest('div');
     if (row) row.remove();
     return link;
-  };
-
-  const removeEmptyParent = (element) => {
-    if (!element) return;
-    const parent = element.parentElement;
-    element.remove();
-    if (parent && parent.childElementCount === 0 && parent.textContent.trim() === '') {
-      parent.remove();
-    }
   };
 
   const ctaContainer = document.createElement('div');

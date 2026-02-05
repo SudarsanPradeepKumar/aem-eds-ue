@@ -195,7 +195,7 @@
       {
         "component": "select",
         "name": "classes",
-        "label": "Variant",
+        "label": "Alignment",
         "value": "",
         "valueType": "string",
         "options": [
@@ -206,6 +206,23 @@
           {
             "name": "Content Right",
             "value": "content-right"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "textColor",
+        "label": "Text Color",
+        "value": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Black",
+            "value": "text-black"
           }
         ]
       },
