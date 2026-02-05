@@ -61,6 +61,34 @@
           "name": "footnotes",
           "label": "Footnotes",
           "value": ""
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "ctaPrimaryText",
+          "label": "Primary CTA Label",
+          "value": ""
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "ctaPrimaryUrl",
+          "label": "Primary CTA URL",
+          "value": ""
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "ctaSecondaryText",
+          "label": "Secondary CTA Label",
+          "value": ""
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "ctaSecondaryUrl",
+          "label": "Secondary CTA URL",
+          "value": ""
         }
       ]
     }
