@@ -47,6 +47,19 @@ export default function decorate(block) {
     || element?.textContent.trim()
     || '';
 
+  const fallbackLinkCandidates = () => [...block.querySelectorAll(':scope > div p.button-container > a')]
+    .filter((anchor) => !anchor.closest('.hero-ctas'));
+
+  const fallbackLinks = fallbackLinkCandidates();
+
+  const takeFallbackLink = () => {
+    const link = fallbackLinks.shift();
+    if (!link) return null;
+    const row = link.closest('div');
+    if (row) row.remove();
+    return link;
+  };
+
   const removeEmptyParent = (element) => {
     if (!element) return;
     const parent = element.parentElement;
@@ -64,21 +77,24 @@ export default function decorate(block) {
     const urlElement = getPropElement(url);
     const label = getPropValue(textElement);
     const href = getPropValue(urlElement);
-    console.log('label: ' + label);
-    console.log('href: ' + href);
+    const fallbackLink = (!href && !urlElement) ? takeFallbackLink() : null;
+    const fallbackHref = fallbackLink?.getAttribute('href')
+      || fallbackLink?.textContent.trim();
 
     if (!label && !href) {
       removeEmptyParent(textElement);
       removeEmptyParent(urlElement);
+      if (fallbackLink) removeEmptyParent(fallbackLink);
       return;
     }
 
     const anchor = document.createElement('a');
     if (href) anchor.href = href;
+    if (!href && fallbackHref) anchor.href = fallbackHref;
     if (label) anchor.textContent = label;
     anchor.classList.add('button', variant);
 
-    if (!href) {
+    if (!href && !fallbackHref) {
       anchor.setAttribute('href', '#');
       anchor.setAttribute('aria-disabled', 'true');
       anchor.classList.add('is-disabled');
@@ -91,6 +107,10 @@ export default function decorate(block) {
     if (urlElement) {
       moveInstrumentation(urlElement, anchor);
       removeEmptyParent(urlElement);
+    }
+    if (fallbackLink) {
+      moveInstrumentation(fallbackLink, anchor);
+      removeEmptyParent(fallbackLink);
     }
 
     const wrapper = document.createElement('p');
