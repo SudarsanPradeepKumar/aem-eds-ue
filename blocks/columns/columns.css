@@ -42,18 +42,18 @@
   }
 
   .columns.columns-60-40 > div > div:first-child {
-    flex: 0 0 60%;
+    flex: 0 0 59%;
   }
 
   .columns.columns-60-40 > div > div:last-child {
-    flex: 0 0 40%;
+    flex: 0 0 39%;
   }
 
   .columns.columns-40-60 > div > div:first-child {
-    flex: 0 0 40%;
+    flex: 0 0 39%;
   }
 
   .columns.columns-40-60 > div > div:last-child {
-    flex: 0 0 60%;
+    flex: 0 0 59%;
   }
 }
