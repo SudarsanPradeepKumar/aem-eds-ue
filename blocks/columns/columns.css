@@ -26,6 +26,11 @@
     gap: 24px;
   }
 
+  .columns.columns-60-40 > div,
+  .columns.columns-40-60 > div {
+    align-items: stretch;
+  }
+
   .columns > div > div {
     flex: 1;
     order: unset;

@@ -19,6 +19,12 @@
   padding: 0 16px;
 }
 
+@media (width >= 900px) {
+  .columns .hero {
+    margin: 0;
+  }
+}
+
 .hero {
   position: relative;
   padding: 40px 24px;
