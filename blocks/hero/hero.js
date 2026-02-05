@@ -88,17 +88,16 @@ export default function decorate(block) {
   ctaFields.forEach(({ text, url, variant }) => {
     const textElement = getPropElement(text);
     const urlElement = getPropElement(url);
-    console.log('textElement: ' + textElement);
-    console.log('urlElement: ' + urlElement);
 
     const label = getTextPropValue(textElement);
     let href = getUrlPropValue(urlElement);
 
-    // Fallback: if no dedicated URL prop, try to get href from the text element when it's an <a>
+    // Fallback: if no dedicated URL prop, and textElement is an <a>, use its href
     if (!href && textElement instanceof HTMLAnchorElement) {
       href = textElement.getAttribute('href') || '';
     }
 
+    // If we still have nothing at all, skip this CTA
     if (!label && !href) {
       if (textElement) textElement.remove();
       if (urlElement) urlElement.remove();
@@ -108,11 +107,11 @@ export default function decorate(block) {
     const anchor = document.createElement('a');
     if (label) anchor.textContent = label;
     anchor.classList.add('button', variant);
-    console.log('href: ' + href);
+
     if (href) {
       anchor.href = href;
     } else {
-      // No URL at all: render visually as a disabled CTA
+      // Keep behavior: label without URL → disabled CTA
       anchor.setAttribute('href', '#');
       anchor.setAttribute('aria-disabled', 'true');
       anchor.classList.add('is-disabled');

@@ -157,9 +157,9 @@
                   "paragraph": "<p>Launch pages quickly with a reusable hero block that supports rich content and calls to action.</p>",
                   "footnotes": "Terms apply. Limited time offer.",
                   "ctaPrimaryText": "Get started",
-                  "ctaPrimaryUrl": "/",
+                  "ctaPrimaryUrl": "https://business.att.com",
                   "ctaSecondaryText": "Learn more",
-                  "ctaSecondaryUrl": "/"
+                  "ctaSecondaryUrl": "https://business.att.com/solutions"
                 }
               }
             }
