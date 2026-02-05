@@ -18,6 +18,7 @@
 
 .columns .hero {
   margin: 16px 0;
+  height: 100%;
 }
 
 .columns .hero .hero-content {

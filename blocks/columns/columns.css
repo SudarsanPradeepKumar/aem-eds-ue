@@ -31,6 +31,11 @@
     align-items: stretch;
   }
 
+  .columns.columns-60-40 > div > div,
+  .columns.columns-40-60 > div > div {
+    height: 100%;
+  }
+
   .columns > div > div {
     flex: 1;
     order: unset;
