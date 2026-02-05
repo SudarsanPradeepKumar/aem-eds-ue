@@ -57,6 +57,15 @@ export default function decorate(block) {
   const ctaContainer = document.createElement('div');
   ctaContainer.className = 'hero-ctas';
 
+  const findPropElement = (prop) => block.querySelector(
+    `[data-aue-prop="${prop}"],[data-richtext-prop="${prop}"]`,
+  );
+
+  const getPropValue = (element) => element?.getAttribute('data-aue-value')
+    || element?.getAttribute('data-richtext-value')
+    || element?.textContent.trim()
+    || '';
+
   const resolveAnchor = (linkElement) => {
     if (!linkElement) return null;
     if (linkElement.tagName === 'A') return linkElement;
@@ -74,10 +83,6 @@ export default function decorate(block) {
     linkElement.replaceWith(anchor);
     return anchor;
   };
-
-  const findPropElement = (prop) => block.querySelector(
-    `[data-aue-prop="${prop}"],[data-richtext-prop="${prop}"]`,
-  );
 
   const findFallbackAnchors = () => {
     const candidates = [];
@@ -108,23 +113,13 @@ export default function decorate(block) {
     const linkElement = findPropElement(linkProp);
     const textElement = findPropElement(textProp);
     const externalElement = findPropElement(externalProp);
-    const anchor = resolveAnchor(linkElement || externalElement);
-    const externalUrl = externalElement?.getAttribute('data-aue-value')
-      || externalElement?.getAttribute('data-richtext-value')
-      || externalElement?.textContent.trim();
-    const textValue = textElement?.textContent.trim();
-    const hasText = Boolean(textValue);
-    const fallbackAnchor = (!anchor && !externalUrl) ? fallbackAnchors.shift() : null;
-    if (!anchor && !externalUrl && !fallbackAnchor && !hasText) return;
+    const externalUrl = getPropValue(externalElement);
+    const textValue = getPropValue(textElement);
+    const fallbackAnchor = (!linkElement && !externalUrl) ? fallbackAnchors.shift() : null;
+    if (!linkElement && !externalUrl && !fallbackAnchor && !textValue) return;
 
-    const resolvedAnchor = anchor || fallbackAnchor || document.createElement('a');
-    if (externalElement) {
-      moveInstrumentation(externalElement, resolvedAnchor);
-      externalElement.remove();
-    }
-    if (externalUrl) {
-      resolvedAnchor.href = externalUrl;
-    }
+    const resolvedAnchor = resolveAnchor(linkElement) || fallbackAnchor || document.createElement('a');
+    if (externalUrl) resolvedAnchor.href = externalUrl;
 
     if (textElement) {
       if (textValue) {
@@ -138,6 +133,8 @@ export default function decorate(block) {
     } else if (!resolvedAnchor.textContent.trim() && externalUrl) {
       resolvedAnchor.textContent = externalUrl;
     }
+
+    if (externalElement) externalElement.remove();
 
     if (!resolvedAnchor.getAttribute('href')) {
       resolvedAnchor.setAttribute('href', '#');
