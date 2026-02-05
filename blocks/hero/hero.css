@@ -11,6 +11,14 @@
   max-width: 100%;
 }
 
+.columns .hero {
+  margin: 8px 0;
+}
+
+.columns .hero .hero-content {
+  padding: 0 16px;
+}
+
 .hero {
   position: relative;
   padding: 40px 24px;
