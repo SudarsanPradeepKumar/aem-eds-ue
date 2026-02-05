@@ -30,4 +30,20 @@
     flex: 1;
     order: unset;
   }
+
+  .columns.columns-60-40 > div > div:first-child {
+    flex: 0 0 60%;
+  }
+
+  .columns.columns-60-40 > div > div:last-child {
+    flex: 0 0 40%;
+  }
+
+  .columns.columns-40-60 > div > div:first-child {
+    flex: 0 0 40%;
+  }
+
+  .columns.columns-40-60 > div > div:last-child {
+    flex: 0 0 60%;
+  }
 }
