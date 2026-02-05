@@ -118,6 +118,10 @@
             {
               "name": "Play",
               "value": "play"
+            },
+            {
+              "name": "Blue",
+              "value": "blue"
             }
           ]
         },
@@ -147,6 +151,10 @@
             {
               "name": "Play",
               "value": "play"
+            },
+            {
+              "name": "Blue",
+              "value": "blue"
             }
           ]
         },

@@ -179,6 +179,12 @@
   color: #f2fafd;
 }
 
+.hero a.button.is-blue {
+  background-color: #00388f;
+  border-color: #00388f;
+  color: #f2fafd;
+}
+
 .hero .button.is-disabled {
   opacity: 0.6;
   pointer-events: none;

@@ -149,6 +149,8 @@ export default function decorate(block) {
       playIcon.setAttribute('aria-hidden', 'true');
       playIcon.textContent = '▶';
       anchor.append(playIcon);
+    } else if (ctaVariant === 'blue') {
+      anchor.classList.add('is-blue');
     }
 
     if (!href && !fallbackHref) {
