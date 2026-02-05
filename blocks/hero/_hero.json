@@ -61,44 +61,6 @@
           "name": "footnotes",
           "label": "Footnotes",
           "value": ""
-        },
-        {
-          "component": "aem-content",
-          "name": "ctaPrimaryLink",
-          "label": "Primary CTA Link"
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "ctaPrimaryText",
-          "label": "Primary CTA Name",
-          "value": ""
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "ctaPrimaryExternalUrl",
-          "label": "Primary CTA External URL",
-          "value": ""
-        },
-        {
-          "component": "aem-content",
-          "name": "ctaSecondaryLink",
-          "label": "Secondary CTA Link"
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "ctaSecondaryText",
-          "label": "Secondary CTA Name",
-          "value": ""
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "ctaSecondaryExternalUrl",
-          "label": "Secondary CTA External URL",
-          "value": ""
         }
       ]
     }

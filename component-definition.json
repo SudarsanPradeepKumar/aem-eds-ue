@@ -155,13 +155,7 @@
                   "eyebrow": "Featured",
                   "title": "Build fast, deliver faster",
                   "paragraph": "<p>Launch pages quickly with a reusable hero block that supports rich content and calls to action.</p>",
-                  "footnotes": "Terms apply. Limited time offer.",
-                  "ctaPrimaryLink": "<a href=\"/\">Get started</a>",
-                  "ctaPrimaryText": "Get started",
-                  "ctaPrimaryExternalUrl": "",
-                  "ctaSecondaryLink": "<a href=\"/\">Learn more</a>",
-                  "ctaSecondaryText": "Learn more",
-                  "ctaSecondaryExternalUrl": ""
+                  "footnotes": "Terms apply. Limited time offer."
                 }
               }
             }
