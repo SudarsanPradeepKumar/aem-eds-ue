@@ -106,7 +106,7 @@ export default function decorate(block) {
     const anchor = document.createElement('a');
     if (label) anchor.textContent = label;
     anchor.classList.add('button', variant);
-
+    console.log('href: ' + href);
     if (href) {
       anchor.href = href;
     } else {
