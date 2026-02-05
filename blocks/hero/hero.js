@@ -102,6 +102,14 @@ export default function decorate(block) {
   }
   removeEmptyParent(textColorElement);
 
+  const backgroundColorElement = getPropElement('backgroundColor');
+  const backgroundColorValue = getPropValue(backgroundColorElement);
+  ['bg-light', 'bg-blue', 'bg-white'].forEach((name) => block.classList.remove(name));
+  if (backgroundColorValue) {
+    block.classList.add(backgroundColorValue);
+  }
+  removeEmptyParent(backgroundColorElement);
+
   const fallbackLinkCandidates = () => [...block.querySelectorAll(':scope > div p.button-container > a')]
     .filter((anchor) => !anchor.closest('.hero-ctas'));
 

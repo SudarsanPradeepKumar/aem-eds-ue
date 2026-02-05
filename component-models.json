@@ -256,6 +256,31 @@
         ]
       },
       {
+        "component": "select",
+        "name": "backgroundColor",
+        "label": "Background Color",
+        "value": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Light",
+            "value": "bg-light"
+          },
+          {
+            "name": "Blue",
+            "value": "bg-blue"
+          },
+          {
+            "name": "White",
+            "value": "bg-white"
+          }
+        ]
+      },
+      {
         "component": "reference",
         "valueType": "string",
         "name": "backgroundImage",

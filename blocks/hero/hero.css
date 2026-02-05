@@ -110,7 +110,6 @@
 }
 
 .hero.bg-image-right {
-  background-color: #f2fafd;
   display: flex;
   align-items: stretch;
   gap: 24px;
@@ -136,7 +135,6 @@
 }
 
 .hero.bg-image-left {
-  background-color: #f2fafd;
   display: flex;
   align-items: stretch;
   gap: 24px;
@@ -204,6 +202,21 @@
 
 .hero.text-black {
   color: #000;
+}
+
+.hero.bg-image-right.bg-light,
+.hero.bg-image-left.bg-light {
+  background-color: #f2fafd;
+}
+
+.hero.bg-image-right.bg-blue,
+.hero.bg-image-left.bg-blue {
+  background-color: #00388f;
+}
+
+.hero.bg-image-right.bg-white,
+.hero.bg-image-left.bg-white {
+  background-color: #fff;
 }
 
 @media (width >= 900px) {
