@@ -17,17 +17,11 @@
 }
 
 .columns .hero {
-  margin: 8px 0;
+  margin: 16px 0;
 }
 
 .columns .hero .hero-content {
   padding: 0 16px;
-}
-
-@media (width >= 900px) {
-  .columns .hero {
-    margin: 0;
-  }
 }
 
 .hero {
