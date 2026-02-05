@@ -11,7 +11,7 @@
   position: relative;
   padding: 40px 24px;
   min-height: 320px;
-  color: #00388f;
+  color: var(--background-color);
   width: 100%;
   margin: 0;
 }
