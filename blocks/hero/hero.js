@@ -108,7 +108,7 @@ export default function decorate(block) {
     const linkElement = findPropElement(linkProp);
     const textElement = findPropElement(textProp);
     const externalElement = findPropElement(externalProp);
-    const anchor = resolveAnchor(linkElement);
+    const anchor = resolveAnchor(linkElement || externalElement);
     const externalUrl = externalElement?.getAttribute('data-aue-value')
       || externalElement?.getAttribute('data-richtext-value')
       || externalElement?.textContent.trim();
