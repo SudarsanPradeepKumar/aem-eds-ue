@@ -32,13 +32,13 @@ export default function decorate(block) {
       }
     }
 
-    const content = document.createElement('div');
-    content.className = 'hero-content';
+    const heroContent = document.createElement('div');
+    heroContent.className = 'hero-content';
     [...block.children].forEach((child) => {
-      if (child !== picture) content.append(child);
+      if (child !== picture) heroContent.append(child);
     });
-    if (content.childNodes.length) {
-      block.append(content);
+    if (heroContent.childElementCount) {
+      block.append(heroContent);
     }
   }
 
@@ -52,11 +52,19 @@ export default function decorate(block) {
   const existingCtas = content.querySelector(':scope > .hero-ctas');
   if (existingCtas) existingCtas.remove();
 
-  const getPropElement = (prop) => block.querySelector(
-    `[data-aue-prop="${prop}"],[data-richtext-prop="${prop}"]`,
-  );
+  const getPropElement = (prop) =>
+    block.querySelector(
+      `[data-aue-prop="${prop}"],[data-richtext-prop="${prop}"]`,
+    );
 
-  const getPropValue = (element) => element?.getAttribute('data-aue-value')
+  const getTextPropValue = (element) =>
+    element?.getAttribute('data-aue-value')
+    || element?.getAttribute('data-richtext-value')
+    || element?.textContent.trim()
+    || '';
+
+  const getUrlPropValue = (element) =>
+    element?.getAttribute('data-aue-value')
     || element?.getAttribute('data-richtext-value')
     || element?.textContent.trim()
     || '';
@@ -80,8 +88,15 @@ export default function decorate(block) {
   ctaFields.forEach(({ text, url, variant }) => {
     const textElement = getPropElement(text);
     const urlElement = getPropElement(url);
-    const label = getPropValue(textElement);
-    const href = getPropValue(urlElement);
+
+    const label = getTextPropValue(textElement);
+    let href = getUrlPropValue(urlElement);
+
+    // Fallback: if no dedicated URL prop, try to get href from the text element when it's an <a>
+    if (!href && textElement instanceof HTMLAnchorElement) {
+      href = textElement.getAttribute('href') || '';
+    }
+
     if (!label && !href) {
       if (textElement) textElement.remove();
       if (urlElement) urlElement.remove();
@@ -89,11 +104,13 @@ export default function decorate(block) {
     }
 
     const anchor = document.createElement('a');
-    if (href) anchor.href = href;
     if (label) anchor.textContent = label;
     anchor.classList.add('button', variant);
 
-    if (!href) {
+    if (href) {
+      anchor.href = href;
+    } else {
+      // No URL at all: render visually as a disabled CTA
       anchor.setAttribute('href', '#');
       anchor.setAttribute('aria-disabled', 'true');
       anchor.classList.add('is-disabled');
@@ -114,7 +131,7 @@ export default function decorate(block) {
     ctaContainer.append(wrapper);
   });
 
-  if (ctaContainer.childNodes.length) {
+  if (ctaContainer.childElementCount) {
     content.append(ctaContainer);
   }
 }
