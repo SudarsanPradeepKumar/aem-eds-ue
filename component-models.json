@@ -164,6 +164,27 @@
     "id": "columns",
     "fields": [
       {
+        "component": "select",
+        "name": "classes",
+        "label": "Layout",
+        "value": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "60/40",
+            "value": "columns-60-40"
+          },
+          {
+            "name": "40/60",
+            "value": "columns-40-60"
+          }
+        ]
+      },
+      {
         "component": "text",
         "valueType": "number",
         "name": "columns",
